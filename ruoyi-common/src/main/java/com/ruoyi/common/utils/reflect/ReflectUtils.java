@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.util.Date;
 import org.apache.commons.lang3.Validate;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -209,10 +208,6 @@ public class ReflectUtils
                     {
                         args[i] = Convert.toBool(args[i]);
                     }
-                    else if (cs[i] == BigDecimal.class)
-                    {
-                        args[i] = Convert.toBigDecimal(args[i]);
-                    }
                 }
             }
             return (E) method.invoke(obj, args);
@@ -316,7 +311,7 @@ public class ReflectUtils
      * 改变private/protected的方法为public，尽量不调用实际改动的语句，避免JDK的SecurityManager抱怨。
      */
     @SuppressWarnings("deprecation")
-	public static void makeAccessible(Method method)
+    public static void makeAccessible(Method method)
     {
         if ((!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers()))
                 && !method.isAccessible())
@@ -329,7 +324,7 @@ public class ReflectUtils
      * 改变private/protected的成员变量为public，尽量不调用实际改动的语句，避免JDK的SecurityManager抱怨。
      */
     @SuppressWarnings("deprecation")
-	public static void makeAccessible(Field field)
+    public static void makeAccessible(Field field)
     {
         if ((!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers())
                 || Modifier.isFinal(field.getModifiers())) && !field.isAccessible())

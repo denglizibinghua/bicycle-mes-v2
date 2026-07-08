@@ -41,6 +41,9 @@ public class GenTable extends BaseEntity
     /** 使用的模板（crud单表操作 tree树表操作 sub主子表操作） */
     private String tplCategory;
 
+    /** 前端类型（element-ui模版 element-plus模版 element-plus-typescript模版） */
+    private String tplWebType;
+
     /** 生成包路径 */
     @NotBlank(message = "生成包路径不能为空")
     private String packageName;
@@ -62,7 +65,7 @@ public class GenTable extends BaseEntity
     private String functionAuthor;
 
     /** 表单布局（单列 双列 三列） */
-    private int formColNum;
+    private Integer formColNum;
 
     /** 生成代码方式（0zip压缩包 1自定义路径） */
     private String genType;
@@ -93,7 +96,7 @@ public class GenTable extends BaseEntity
     private String treeName;
 
     /** 上级菜单ID字段 */
-    private String parentMenuId;
+    private Long parentMenuId;
 
     /** 上级菜单名称字段 */
     private String parentMenuName;
@@ -171,6 +174,16 @@ public class GenTable extends BaseEntity
         this.tplCategory = tplCategory;
     }
 
+    public String getTplWebType()
+    {
+        return tplWebType;
+    }
+
+    public void setTplWebType(String tplWebType)
+    {
+        this.tplWebType = tplWebType;
+    }
+
     public String getPackageName()
     {
         return packageName;
@@ -221,12 +234,12 @@ public class GenTable extends BaseEntity
         this.functionAuthor = functionAuthor;
     }
 
-    public int getFormColNum()
+    public Integer getFormColNum()
     {
         return formColNum;
     }
 
-    public void setFormColNum(int formColNum)
+    public void setFormColNum(Integer formColNum)
     {
         this.formColNum = formColNum;
     }
@@ -321,12 +334,12 @@ public class GenTable extends BaseEntity
         this.treeName = treeName;
     }
 
-    public String getParentMenuId()
+    public Long getParentMenuId()
     {
         return parentMenuId;
     }
 
-    public void setParentMenuId(String parentMenuId)
+    public void setParentMenuId(Long parentMenuId)
     {
         this.parentMenuId = parentMenuId;
     }

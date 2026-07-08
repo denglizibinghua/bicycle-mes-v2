@@ -8,25 +8,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.ruoyi.common.config.RuoYiConfig;
-import com.ruoyi.common.config.ServerConfig;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.file.FileUploadUtils;
 import com.ruoyi.common.utils.file.FileUtils;
+import com.ruoyi.framework.config.ServerConfig;
 
 /**
  * 通用请求处理
  * 
  * @author ruoyi
  */
-@Controller
+@RestController
 @RequestMapping("/common")
 public class CommonController
 {
@@ -35,7 +34,7 @@ public class CommonController
     @Autowired
     private ServerConfig serverConfig;
 
-    private static final String FILE_DELIMETER = ",";
+    private static final String FILE_DELIMITER = ",";
 
     /**
      * 通用下载请求
@@ -73,7 +72,6 @@ public class CommonController
      * 通用上传请求（单个）
      */
     @PostMapping("/upload")
-    @ResponseBody
     public AjaxResult uploadFile(MultipartFile file) throws Exception
     {
         try
@@ -100,7 +98,6 @@ public class CommonController
      * 通用上传请求（多个）
      */
     @PostMapping("/uploads")
-    @ResponseBody
     public AjaxResult uploadFiles(List<MultipartFile> files) throws Exception
     {
         try
@@ -122,10 +119,10 @@ public class CommonController
                 originalFilenames.add(file.getOriginalFilename());
             }
             AjaxResult ajax = AjaxResult.success();
-            ajax.put("urls", StringUtils.join(urls, FILE_DELIMETER));
-            ajax.put("fileNames", StringUtils.join(fileNames, FILE_DELIMETER));
-            ajax.put("newFileNames", StringUtils.join(newFileNames, FILE_DELIMETER));
-            ajax.put("originalFilenames", StringUtils.join(originalFilenames, FILE_DELIMETER));
+            ajax.put("urls", StringUtils.join(urls, FILE_DELIMITER));
+            ajax.put("fileNames", StringUtils.join(fileNames, FILE_DELIMITER));
+            ajax.put("newFileNames", StringUtils.join(newFileNames, FILE_DELIMITER));
+            ajax.put("originalFilenames", StringUtils.join(originalFilenames, FILE_DELIMITER));
             return ajax;
         }
         catch (Exception e)
@@ -138,7 +135,8 @@ public class CommonController
      * 本地资源通用下载
      */
     @GetMapping("/download/resource")
-    public void resourceDownload(String resource, HttpServletRequest request, HttpServletResponse response) throws Exception
+    public void resourceDownload(String resource, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
     {
         try
         {

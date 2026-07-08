@@ -315,6 +315,30 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     }
 
     /**
+     * 判断是否为空，并且不是空白字符
+     * 
+     * @param str 要判断的value
+     * @return 结果
+     */
+    public static boolean hasText(String str)
+    {
+        return (str != null && !str.isEmpty() && containsText(str));
+    }
+
+    private static boolean containsText(CharSequence str)
+    {
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++)
+        {
+            if (!Character.isWhitespace(str.charAt(i)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 格式化文本, {} 表示占位符<br>
      * 此方法只是简单将占位符 {} 按照顺序替换为参数<br>
      * 如果想输出 {} 使用 \\转义 { 即可，如果想输出 {} 之前的 \ 使用双转义符 \\\\ 即可<br>
@@ -427,7 +451,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
      *
      * @param collection 给定的集合
      * @param array 给定的数组
-     * @return boolean 结果
+     * @return 结果
      */
     public static boolean containsAny(Collection<String> collection, String... array)
     {
@@ -446,6 +470,18 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
             }
             return false;
         }
+    }
+
+    /**
+     * 判断是否包含给定数组中的任意一个。
+     *
+     * @param cs 要判断的字符串
+     * @param searchCharSequences 要判断的数组
+     * @return 结果
+     */
+    public static boolean containsAny(final CharSequence cs, final CharSequence... searchCharSequences)
+    {
+        return Strings.CS.containsAny(cs, searchCharSequences);
     }
 
     /**
@@ -496,6 +532,18 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     }
 
     /**
+     * 不区分大小写地检查一个字符串是否以指定前缀开头。
+     *
+     * @param str 待检查的字符串
+     * @param 要查找的前缀
+     * @return 结果
+     */
+    public static boolean startsWithIgnoreCase(final CharSequence str, final CharSequence prefix)
+    {
+        return Strings.CI.startsWith(str, prefix);
+    }
+
+    /**
      * 比较两个字符串是否相同
      *
      * @param cs1 第一个字符串
@@ -518,6 +566,17 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     public static String replace(final String text, final String searchString, final String replacement)
     {
         return Strings.CS.replace(text, searchString, replacement);
+    }
+
+    /**
+     * 仅当子字符串位于源字符串末尾时才将其移除，否则返回源字符串。
+     * @param str 要搜索的源字符串
+     * @param remove 要搜索并移除的字符串
+     * @return 如果找到并移除了字符串，则返回移除后的子字符串
+     */
+    public static String removeEnd(final String str, final String remove)
+    {
+        return Strings.CS.removeEnd(str, remove);
     }
 
     /**
