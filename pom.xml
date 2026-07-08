@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-    <groupId>com.ruoyi</groupId>
-    <artifactId>ruoyi</artifactId>
+    <groupId>com.bicyclemes</groupId>
+    <artifactId>BicycleMES</artifactId>
     <version>3.9.2</version>
 
-    <name>ruoyi</name>
-    <url>http://www.ruoyi.vip</url>
+    <name>BicycleMES</name>
+    <url>http://www.BicycleMES.vip</url>
     <description>若依管理系统</description>
     
     <properties>
-        <ruoyi.version>3.9.2</ruoyi.version>
+        <bicycle-mes.version>3.9.2</bicycle-mes.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -137,49 +137,49 @@
 
             <!-- 定时任务-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-quartz</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.bicyclemes</groupId>
+                <artifactId>bicycle-quartz</artifactId>
+                <version>${bicycle-mes.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-generator</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.bicyclemes</groupId>
+                <artifactId>bicycle-generator</artifactId>
+                <version>${bicycle-mes.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-framework</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.bicyclemes</groupId>
+                <artifactId>bicycle-framework</artifactId>
+                <version>${bicycle-mes.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-system</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.bicyclemes</groupId>
+                <artifactId>bicycle-system</artifactId>
+                <version>${bicycle-mes.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-common</artifactId>
-                <version>${ruoyi.version}</version>
+                <groupId>com.bicyclemes</groupId>
+                <artifactId>bicycle-common</artifactId>
+                <version>${bicycle-mes.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>ruoyi-admin</module>
-        <module>ruoyi-framework</module>
-        <module>ruoyi-system</module>
-        <module>ruoyi-quartz</module>
-        <module>ruoyi-generator</module>
-        <module>ruoyi-common</module>
+        <module>bicycle-admin</module>
+        <module>bicycle-framework</module>
+        <module>bicycle-system</module>
+        <module>bicycle-quartz</module>
+        <module>bicycle-generator</module>
+        <module>bicycle-common</module>
     </modules>
     <packaging>pom</packaging>
 
