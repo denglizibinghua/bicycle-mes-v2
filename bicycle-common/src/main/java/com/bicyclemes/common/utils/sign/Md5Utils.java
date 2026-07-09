@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.sign;
+package com.bicyclemes.common.utils.sign;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

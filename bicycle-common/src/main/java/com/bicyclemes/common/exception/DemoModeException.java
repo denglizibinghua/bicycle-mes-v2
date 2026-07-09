@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception;
+package com.bicyclemes.common.exception;
 
 /**
  * 演示模式异常

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.util;
+package com.bicyclemes.quartz.util;
 
 import java.text.ParseException;
 import java.util.Date;

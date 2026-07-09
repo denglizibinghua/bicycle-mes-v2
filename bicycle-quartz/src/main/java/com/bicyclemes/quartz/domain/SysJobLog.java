@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.domain;
+package com.bicyclemes.quartz.domain;
 
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;

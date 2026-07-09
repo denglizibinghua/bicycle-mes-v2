@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils;
+package com.bicyclemes.common.utils;
 
 import com.github.pagehelper.PageHelper;
 import com.bicyclemes.common.core.page.PageDomain;

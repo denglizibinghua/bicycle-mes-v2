@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.annotation;
+package com.bicyclemes.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

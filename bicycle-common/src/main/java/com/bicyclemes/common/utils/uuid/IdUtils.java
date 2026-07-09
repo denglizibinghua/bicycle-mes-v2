@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.uuid;
+package com.bicyclemes.common.utils.uuid;
 
 /**
  * ID生成器工具类

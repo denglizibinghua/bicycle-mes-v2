@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.domain;
+package com.bicyclemes.quartz.domain;
 
 import java.util.Date;
 import jakarta.validation.constraints.NotBlank;

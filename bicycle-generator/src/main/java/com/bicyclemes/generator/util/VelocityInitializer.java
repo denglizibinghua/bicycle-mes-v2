@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.util;
+package com.bicyclemes.generator.util;
 
 import java.util.Properties;
 import org.apache.velocity.app.Velocity;

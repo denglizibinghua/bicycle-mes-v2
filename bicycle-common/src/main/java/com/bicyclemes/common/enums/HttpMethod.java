@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.enums;
+package com.bicyclemes.common.enums;
 
 import java.util.HashMap;
 import java.util.Map;

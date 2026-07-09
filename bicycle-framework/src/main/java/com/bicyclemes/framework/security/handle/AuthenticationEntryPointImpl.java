@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.security.handle;
+package com.bicyclemes.framework.security.handle;
 
 import java.io.IOException;
 import java.io.Serializable;

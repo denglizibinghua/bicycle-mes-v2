@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.service;
+package com.bicyclemes.system.service;
 
 import java.util.List;
 import com.bicyclemes.system.domain.SysOperLog;

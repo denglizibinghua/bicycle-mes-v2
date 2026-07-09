@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils;
+package com.bicyclemes.common.utils;
 
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;

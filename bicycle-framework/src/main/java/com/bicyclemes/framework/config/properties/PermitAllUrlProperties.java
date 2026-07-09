@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config.properties;
+package com.bicyclemes.framework.config.properties;
 
 import java.util.ArrayList;
 import java.util.List;

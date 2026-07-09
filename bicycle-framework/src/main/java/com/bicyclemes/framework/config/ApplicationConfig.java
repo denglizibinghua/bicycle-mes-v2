@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.manager;
+package com.bicyclemes.framework.manager;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

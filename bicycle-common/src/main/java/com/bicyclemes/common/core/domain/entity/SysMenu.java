@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.domain.entity;
+package com.bicyclemes.common.core.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;

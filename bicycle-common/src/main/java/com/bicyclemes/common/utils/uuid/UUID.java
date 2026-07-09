@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.uuid;
+package com.bicyclemes.common.utils.uuid;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

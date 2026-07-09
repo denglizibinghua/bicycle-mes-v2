@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.poi;
+package com.bicyclemes.common.utils.poi;
 
 import java.util.ArrayList;
 import java.util.List;

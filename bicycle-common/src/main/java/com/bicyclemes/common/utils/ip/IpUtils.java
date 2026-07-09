@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.ip;
+package com.bicyclemes.common.utils.ip;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

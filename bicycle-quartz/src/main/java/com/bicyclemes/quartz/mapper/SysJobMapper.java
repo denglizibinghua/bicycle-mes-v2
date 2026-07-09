@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.mapper;
+package com.bicyclemes.quartz.mapper;
 
 import java.util.List;
 import com.bicyclemes.quartz.domain.SysJob;

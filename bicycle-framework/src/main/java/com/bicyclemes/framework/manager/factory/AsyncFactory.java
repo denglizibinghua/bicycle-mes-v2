@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.manager.factory;
+package com.bicyclemes.framework.manager.factory;
 
 import java.util.TimerTask;
 import org.slf4j.Logger;

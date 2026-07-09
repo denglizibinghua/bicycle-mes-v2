@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.tool;
+package com.bicyclemes.web.controller.tool;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

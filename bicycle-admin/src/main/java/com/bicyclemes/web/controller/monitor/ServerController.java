@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.monitor;
+package com.bicyclemes.web.controller.monitor;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

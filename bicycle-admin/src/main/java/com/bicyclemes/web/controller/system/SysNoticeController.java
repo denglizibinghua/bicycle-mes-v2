@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.system;
+package com.bicyclemes.web.controller.system;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

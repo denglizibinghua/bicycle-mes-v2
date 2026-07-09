@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.constant;
+package com.bicyclemes.common.constant;
 
 /**
  * 缓存的key 常量

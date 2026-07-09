@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.service.impl;
+package com.bicyclemes.system.service.impl;
 
 import org.springframework.stereotype.Service;
 import com.bicyclemes.common.core.domain.model.LoginUser;

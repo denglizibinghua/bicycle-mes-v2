@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.file;
+package com.bicyclemes.common.utils.file;
 
 /**
  * 媒体类型工具类

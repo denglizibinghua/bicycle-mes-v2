@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import com.bicyclemes.common.utils.Threads;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;

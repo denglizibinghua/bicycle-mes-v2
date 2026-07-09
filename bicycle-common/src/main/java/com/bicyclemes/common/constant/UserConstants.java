@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.constant;
+package com.bicyclemes.common.constant;
 
 /**
  * 用户常量信息

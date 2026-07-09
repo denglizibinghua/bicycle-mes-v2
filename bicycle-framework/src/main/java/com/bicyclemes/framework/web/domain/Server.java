@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.domain;
+package com.bicyclemes.framework.web.domain;
 
 import java.net.UnknownHostException;
 import java.util.LinkedList;

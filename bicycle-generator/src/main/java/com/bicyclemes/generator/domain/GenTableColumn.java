@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.domain;
+package com.bicyclemes.generator.domain;
 
 import jakarta.validation.constraints.NotBlank;
 import com.bicyclemes.common.core.domain.BaseEntity;

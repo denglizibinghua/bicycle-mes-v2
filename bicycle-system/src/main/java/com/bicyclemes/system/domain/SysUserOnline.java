@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain;
+package com.bicyclemes.system.domain;
 
 /**
  * 当前在线会话

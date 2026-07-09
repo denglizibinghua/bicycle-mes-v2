@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;

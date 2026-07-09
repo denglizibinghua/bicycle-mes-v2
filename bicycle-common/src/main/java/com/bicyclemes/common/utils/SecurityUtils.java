@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils;
+package com.bicyclemes.common.utils;
 
 import java.util.Collection;
 import java.util.List;

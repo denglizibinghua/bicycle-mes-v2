@@ -1,4 +1,4 @@
-﻿//package com.bicyclemes.quartz.config;
+//package com.bicyclemes.quartz.config;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.domain.server;
+package com.bicyclemes.framework.web.domain.server;
 
 import com.bicyclemes.common.utils.Arith;
 

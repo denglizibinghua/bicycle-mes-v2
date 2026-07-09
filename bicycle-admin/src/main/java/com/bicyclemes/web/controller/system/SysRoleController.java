@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.system;
+package com.bicyclemes.web.controller.system;
 
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;

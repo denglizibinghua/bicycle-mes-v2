@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.util;
+package com.bicyclemes.quartz.util;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;

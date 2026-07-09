@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.util;
+package com.bicyclemes.generator.util;
 
 import java.util.Arrays;
 import org.apache.commons.lang3.RegExUtils;

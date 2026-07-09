@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.ip;
+package com.bicyclemes.common.utils.ip;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

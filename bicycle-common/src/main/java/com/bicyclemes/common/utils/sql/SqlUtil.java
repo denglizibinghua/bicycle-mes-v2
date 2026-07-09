@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.sql;
+package com.bicyclemes.common.utils.sql;
 
 import com.bicyclemes.common.exception.UtilException;
 import com.bicyclemes.common.utils.StringUtils;

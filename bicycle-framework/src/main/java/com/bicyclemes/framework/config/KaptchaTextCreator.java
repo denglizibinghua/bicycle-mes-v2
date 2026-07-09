@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import java.util.Random;
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;

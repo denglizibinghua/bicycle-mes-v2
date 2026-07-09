@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception;
+package com.bicyclemes.common.exception;
 
 /**
  * 工具类异常

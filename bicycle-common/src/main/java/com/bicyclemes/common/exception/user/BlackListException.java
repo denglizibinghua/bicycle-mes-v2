@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.user;
+package com.bicyclemes.common.exception.user;
 
 /**
  * 黑名单IP异常类

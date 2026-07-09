@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.domain;
+package com.bicyclemes.common.core.domain;
 
 import java.io.Serializable;
 import com.bicyclemes.common.constant.HttpStatus;

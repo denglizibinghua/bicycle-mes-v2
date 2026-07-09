@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.text;
+package com.bicyclemes.common.core.text;
 
 import com.bicyclemes.common.utils.StringUtils;
 

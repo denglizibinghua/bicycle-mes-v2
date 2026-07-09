@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.constant;
+package com.bicyclemes.common.constant;
 
 import java.util.Locale;
 import io.jsonwebtoken.Claims;

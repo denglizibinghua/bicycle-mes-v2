@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.domain.model;
+package com.bicyclemes.common.core.domain.model;
 
 /**
  * 用户注册对象

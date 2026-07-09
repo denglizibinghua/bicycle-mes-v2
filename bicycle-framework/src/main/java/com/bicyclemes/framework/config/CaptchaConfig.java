@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import java.util.Properties;
 import org.springframework.context.annotation.Bean;

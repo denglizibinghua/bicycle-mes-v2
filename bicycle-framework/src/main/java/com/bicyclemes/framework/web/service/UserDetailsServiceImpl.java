@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.service;
+package com.bicyclemes.framework.web.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

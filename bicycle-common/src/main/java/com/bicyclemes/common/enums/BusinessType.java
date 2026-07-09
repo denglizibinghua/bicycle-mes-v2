@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.enums;
+package com.bicyclemes.common.enums;
 
 /**
  * 业务操作类型

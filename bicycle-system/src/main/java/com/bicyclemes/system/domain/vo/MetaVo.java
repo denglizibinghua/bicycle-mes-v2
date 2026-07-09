@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain.vo;
+package com.bicyclemes.system.domain.vo;
 
 import com.bicyclemes.common.utils.StringUtils;
 

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.controller;
+package com.bicyclemes.common.core.controller;
 
 import java.beans.PropertyEditorSupport;
 import java.util.Date;

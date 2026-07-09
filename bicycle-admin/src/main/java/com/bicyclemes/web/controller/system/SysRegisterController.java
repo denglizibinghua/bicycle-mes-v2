@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.system;
+package com.bicyclemes.web.controller.system;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

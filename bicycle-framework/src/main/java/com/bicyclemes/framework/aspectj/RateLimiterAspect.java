@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.aspectj;
+package com.bicyclemes.framework.aspectj;
 
 import java.lang.reflect.Method;
 import java.util.Collections;

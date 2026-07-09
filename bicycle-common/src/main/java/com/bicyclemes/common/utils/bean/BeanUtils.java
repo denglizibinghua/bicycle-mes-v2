@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.bean;
+package com.bicyclemes.common.utils.bean;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

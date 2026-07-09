@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception;
+package com.bicyclemes.common.exception;
 
 /**
  * 全局异常

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.interceptor.impl;
+package com.bicyclemes.framework.interceptor.impl;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,13 +1,13 @@
 ﻿# 项目相关配置
-BicycleMES:
+bicycle-mes:
   # 名称
   name: BicycleMES
   # 版本
   version: 1.0.0
   # 版权年份
   copyrightYear: 2026
-  # 文件路径 示例（ Windows配置D:/BicycleMES/uploadPath，Linux配置 /home/BicycleMES/uploadPath）
-  profile: D:/BicycleMES/uploadPath
+  # 文件路径 示例（ Windows配置D:/bicycle-mes/uploadPath，Linux配置 /home/bicycle-mes/uploadPath）
+  profile: D:/bicycle-mes/uploadPath
   # 获取ip地址开关
   addressEnabled: false
   # 验证码类型 math 数字计算 char 字符验证

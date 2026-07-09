@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.user;
+package com.bicyclemes.common.exception.user;
 
 /**
  * 验证码失效异常类

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.service;
+package com.bicyclemes.generator.service;
 
 import java.util.List;
 import com.bicyclemes.generator.domain.GenTableColumn;

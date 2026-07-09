@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.xss;
+package com.bicyclemes.common.xss;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

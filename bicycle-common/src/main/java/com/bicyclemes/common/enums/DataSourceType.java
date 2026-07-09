@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.enums;
+package com.bicyclemes.common.enums;
 
 /**
  * 数据源

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.uuid;
+package com.bicyclemes.common.utils.uuid;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import com.bicyclemes.common.utils.DateUtils;

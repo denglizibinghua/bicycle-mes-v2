@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.text;
+package com.bicyclemes.common.core.text;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.user;
+package com.bicyclemes.common.exception.user;
 
 /**
  * 用户不存在异常类

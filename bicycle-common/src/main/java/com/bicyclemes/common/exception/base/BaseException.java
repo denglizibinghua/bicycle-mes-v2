@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.base;
+package com.bicyclemes.common.exception.base;
 
 import com.bicyclemes.common.utils.MessageUtils;
 import com.bicyclemes.common.utils.StringUtils;

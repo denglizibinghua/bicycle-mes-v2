@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.file;
+package com.bicyclemes.common.exception.file;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

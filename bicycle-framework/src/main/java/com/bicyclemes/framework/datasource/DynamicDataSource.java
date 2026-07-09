@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.datasource;
+package com.bicyclemes.framework.datasource;
 
 import java.util.Map;
 import javax.sql.DataSource;

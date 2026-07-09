@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.domain.server;
+package com.bicyclemes.framework.web.domain.server;
 
 import java.lang.management.ManagementFactory;
 import com.bicyclemes.common.utils.Arith;

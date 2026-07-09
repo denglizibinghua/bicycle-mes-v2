@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.constant;
+package com.bicyclemes.common.constant;
 
 /**
  * 代码生成通用常量

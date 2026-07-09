@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.sign;
+package com.bicyclemes.common.utils.sign;
 
 /**
  * Base64工具类

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.html;
+package com.bicyclemes.common.utils.html;
 
 import java.util.ArrayList;
 import java.util.Collections;

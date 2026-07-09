@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.file;
+package com.bicyclemes.common.utils.file;
 
 import java.io.File;
 import java.io.IOException;

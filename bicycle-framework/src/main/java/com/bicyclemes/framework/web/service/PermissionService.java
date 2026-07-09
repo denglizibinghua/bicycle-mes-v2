@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.service;
+package com.bicyclemes.framework.web.service;
 
 import java.util.Set;
 import org.springframework.stereotype.Service;

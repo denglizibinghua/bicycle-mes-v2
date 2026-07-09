@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.filter;
+package com.bicyclemes.common.filter;
 
 import com.alibaba.fastjson2.filter.SimplePropertyPreFilter;
 

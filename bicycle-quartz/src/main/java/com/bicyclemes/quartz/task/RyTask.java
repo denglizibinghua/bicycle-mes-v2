@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.task;
+package com.bicyclemes.quartz.task;
 
 import org.springframework.stereotype.Component;
 import com.bicyclemes.common.utils.StringUtils;

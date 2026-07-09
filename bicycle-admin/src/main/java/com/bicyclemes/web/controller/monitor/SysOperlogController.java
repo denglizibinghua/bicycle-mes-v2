@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.web.controller.monitor;
+package com.bicyclemes.web.controller.monitor;
 
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;

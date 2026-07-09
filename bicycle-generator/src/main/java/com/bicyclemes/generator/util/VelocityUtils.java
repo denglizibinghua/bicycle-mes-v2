@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.util;
+package com.bicyclemes.generator.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;

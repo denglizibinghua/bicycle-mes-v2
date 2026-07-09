@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils;
+package com.bicyclemes.common.utils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

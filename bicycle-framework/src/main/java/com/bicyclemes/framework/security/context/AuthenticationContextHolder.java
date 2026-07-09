@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.security.context;
+package com.bicyclemes.framework.security.context;
 
 import org.springframework.security.core.Authentication;
 

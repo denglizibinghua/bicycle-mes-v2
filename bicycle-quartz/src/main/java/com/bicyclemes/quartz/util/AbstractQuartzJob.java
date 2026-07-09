@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.util;
+package com.bicyclemes.quartz.util;
 
 import java.util.Date;
 import org.quartz.Job;

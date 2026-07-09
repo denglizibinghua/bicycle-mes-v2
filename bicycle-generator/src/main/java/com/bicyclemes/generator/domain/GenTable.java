@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.domain;
+package com.bicyclemes.generator.domain;
 
 import java.util.List;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.config.serializer;
+package com.bicyclemes.common.config.serializer;
 
 import java.util.Objects;
 import tools.jackson.core.JacksonException;

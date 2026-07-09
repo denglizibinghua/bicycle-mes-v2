@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.page;
+package com.bicyclemes.common.core.page;
 
 import com.bicyclemes.common.core.text.Convert;
 import com.bicyclemes.common.utils.ServletUtils;

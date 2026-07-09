@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.domain.server;
+package com.bicyclemes.framework.web.domain.server;
 
 /**
  * 系统文件相关信息

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.exception.user;
+package com.bicyclemes.common.exception.user;
 
 import com.bicyclemes.common.exception.base.BaseException;
 

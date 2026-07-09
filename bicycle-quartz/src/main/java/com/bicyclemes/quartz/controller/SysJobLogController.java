@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.controller;
+package com.bicyclemes.quartz.controller;
 
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;

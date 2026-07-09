@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.redis;
+package com.bicyclemes.common.core.redis;
 
 import java.util.Collection;
 import java.util.Iterator;

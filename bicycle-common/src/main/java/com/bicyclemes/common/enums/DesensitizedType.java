@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.enums;
+package com.bicyclemes.common.enums;
 
 import java.util.function.Function;
 import com.bicyclemes.common.utils.DesensitizedUtil;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.http;
+package com.bicyclemes.common.utils.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;

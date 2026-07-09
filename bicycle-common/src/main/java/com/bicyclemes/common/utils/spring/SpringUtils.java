@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.spring;
+package com.bicyclemes.common.utils.spring;
 
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.framework.AopContext;

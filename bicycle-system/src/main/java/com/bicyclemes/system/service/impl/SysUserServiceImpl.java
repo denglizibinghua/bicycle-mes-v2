@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.service.impl;
+package com.bicyclemes.system.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;

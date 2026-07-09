@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.constant;
+package com.bicyclemes.common.constant;
 
 /**
  * 任务调度通用常量

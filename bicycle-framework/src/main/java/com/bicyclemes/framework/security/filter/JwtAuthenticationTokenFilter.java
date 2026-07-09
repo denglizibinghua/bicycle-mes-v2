@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.security.filter;
+package com.bicyclemes.framework.security.filter;
 
 import java.io.IOException;
 import jakarta.servlet.FilterChain;

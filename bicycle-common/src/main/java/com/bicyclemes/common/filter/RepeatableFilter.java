@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.filter;
+package com.bicyclemes.common.filter;
 
 import java.io.IOException;
 import jakarta.servlet.Filter;

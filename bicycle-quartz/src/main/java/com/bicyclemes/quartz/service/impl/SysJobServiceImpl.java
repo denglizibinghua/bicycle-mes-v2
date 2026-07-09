@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.service.impl;
+package com.bicyclemes.quartz.service.impl;
 
 import java.util.List;
 import jakarta.annotation.PostConstruct;

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.utils.bean;
+package com.bicyclemes.common.utils.bean;
 
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;

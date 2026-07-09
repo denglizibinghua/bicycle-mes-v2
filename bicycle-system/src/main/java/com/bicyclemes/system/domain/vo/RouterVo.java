@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain.vo;
+package com.bicyclemes.system.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;

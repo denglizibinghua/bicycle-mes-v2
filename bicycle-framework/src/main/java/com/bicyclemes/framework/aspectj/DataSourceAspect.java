@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.aspectj;
+package com.bicyclemes.framework.aspectj;
 
 import java.util.Objects;
 import org.aspectj.lang.ProceedingJoinPoint;

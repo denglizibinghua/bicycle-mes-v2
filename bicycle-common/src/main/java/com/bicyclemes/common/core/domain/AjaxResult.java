@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.core.domain;
+package com.bicyclemes.common.core.domain;
 
 import java.util.HashMap;
 import java.util.Objects;

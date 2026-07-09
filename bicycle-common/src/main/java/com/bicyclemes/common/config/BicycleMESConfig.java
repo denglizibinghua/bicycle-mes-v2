@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.common.config;
+package com.bicyclemes.common.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author BicycleMES
  */
 @Component
-@ConfigurationProperties(prefix = "BicycleMES")
+@ConfigurationProperties(prefix = "bicycle-mes")
 public class BicycleMESConfig
 {
     /** 项目名称 */

@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain;
+package com.bicyclemes.system.domain;
 
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;

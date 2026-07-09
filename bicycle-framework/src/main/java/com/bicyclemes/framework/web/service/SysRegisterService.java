@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.web.service;
+package com.bicyclemes.framework.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

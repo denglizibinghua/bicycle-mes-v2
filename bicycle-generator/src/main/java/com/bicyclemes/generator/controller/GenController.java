@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.generator.controller;
+package com.bicyclemes.generator.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;

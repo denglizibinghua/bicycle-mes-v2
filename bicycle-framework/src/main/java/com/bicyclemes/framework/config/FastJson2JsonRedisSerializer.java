@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.config;
+package com.bicyclemes.framework.config;
 
 import java.nio.charset.Charset;
 import org.springframework.data.redis.serializer.RedisSerializer;

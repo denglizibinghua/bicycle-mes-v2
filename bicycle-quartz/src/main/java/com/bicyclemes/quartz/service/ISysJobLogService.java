@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.quartz.service;
+package com.bicyclemes.quartz.service;
 
 import java.util.List;
 import com.bicyclemes.quartz.domain.SysJobLog;

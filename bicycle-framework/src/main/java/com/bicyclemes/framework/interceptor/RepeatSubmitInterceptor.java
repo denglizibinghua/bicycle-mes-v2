@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.framework.interceptor;
+package com.bicyclemes.framework.interceptor;
 
 import java.lang.reflect.Method;
 import jakarta.servlet.http.HttpServletRequest;

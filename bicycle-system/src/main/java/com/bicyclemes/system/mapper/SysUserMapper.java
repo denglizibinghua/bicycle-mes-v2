@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.mapper;
+package com.bicyclemes.system.mapper;
 
 import java.util.Date;
 import java.util.List;

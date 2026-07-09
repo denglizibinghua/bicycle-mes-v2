@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.service;
+package com.bicyclemes.system.service;
 
 import com.bicyclemes.common.core.domain.model.LoginUser;
 import com.bicyclemes.system.domain.SysUserOnline;

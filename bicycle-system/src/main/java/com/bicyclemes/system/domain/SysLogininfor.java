@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain;
+package com.bicyclemes.system.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;

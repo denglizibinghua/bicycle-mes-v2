@@ -1,4 +1,4 @@
-﻿package com.bicyclemes.system.domain;
+package com.bicyclemes.system.domain;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
