@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bicyclemes.mes.mapper.ProductionLineMapper">
+    
+    <resultMap type="ProductionLine" id="ProductionLineResult">
+        <result property="id"    column="id"    />
+        <result property="lineCode"    column="line_code"    />
+        <result property="lineName"    column="line_name"    />
+        <result property="workshop"    column="workshop"    />
+        <result property="manager"    column="manager"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectProductionLineVo">
+        select id, line_code, line_name, workshop, manager, status, create_by, create_time, update_by, update_time, remark from mes_production_line
+    </sql>
+
+    <select id="selectProductionLineList" parameterType="ProductionLine" resultMap="ProductionLineResult">
+        <include refid="selectProductionLineVo"/>
+        <where>  
+            <if test="lineCode != null  and lineCode != ''"> and line_code = #{lineCode}</if>
+            <if test="lineName != null  and lineName != ''"> and line_name like concat('%', #{lineName}, '%')</if>
+            <if test="workshop != null  and workshop != ''"> and workshop = #{workshop}</if>
+            <if test="manager != null  and manager != ''"> and manager = #{manager}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectProductionLineById" parameterType="Long" resultMap="ProductionLineResult">
+        <include refid="selectProductionLineVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertProductionLine" parameterType="ProductionLine" useGeneratedKeys="true" keyProperty="id">
+        insert into mes_production_line
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lineCode != null and lineCode != ''">line_code,</if>
+            <if test="lineName != null and lineName != ''">line_name,</if>
+            <if test="workshop != null">workshop,</if>
+            <if test="manager != null">manager,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lineCode != null and lineCode != ''">#{lineCode},</if>
+            <if test="lineName != null and lineName != ''">#{lineName},</if>
+            <if test="workshop != null">#{workshop},</if>
+            <if test="manager != null">#{manager},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateProductionLine" parameterType="ProductionLine">
+        update mes_production_line
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lineCode != null and lineCode != ''">line_code = #{lineCode},</if>
+            <if test="lineName != null and lineName != ''">line_name = #{lineName},</if>
+            <if test="workshop != null">workshop = #{workshop},</if>
+            <if test="manager != null">manager = #{manager},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteProductionLineById" parameterType="Long">
+        delete from mes_production_line where id = #{id}
+    </delete>
+
+    <delete id="deleteProductionLineByIds" parameterType="String">
+        delete from mes_production_line where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

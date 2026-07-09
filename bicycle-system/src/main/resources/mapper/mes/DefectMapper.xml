@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bicyclemes.mes.mapper.DefectMapper">
+    
+    <resultMap type="Defect" id="DefectResult">
+        <result property="id"    column="id"    />
+        <result property="defectCode"    column="defect_code"    />
+        <result property="defectName"    column="defect_name"    />
+        <result property="defectCategory"    column="defect_category"    />
+        <result property="severity"    column="severity"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectDefectVo">
+        select id, defect_code, defect_name, defect_category, severity, status, create_by, create_time, update_by, update_time, remark from mes_defect
+    </sql>
+
+    <select id="selectDefectList" parameterType="Defect" resultMap="DefectResult">
+        <include refid="selectDefectVo"/>
+        <where>  
+            <if test="defectCode != null  and defectCode != ''"> and defect_code = #{defectCode}</if>
+            <if test="defectName != null  and defectName != ''"> and defect_name like concat('%', #{defectName}, '%')</if>
+            <if test="defectCategory != null  and defectCategory != ''"> and defect_category = #{defectCategory}</if>
+            <if test="severity != null  and severity != ''"> and severity = #{severity}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectDefectById" parameterType="Long" resultMap="DefectResult">
+        <include refid="selectDefectVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertDefect" parameterType="Defect" useGeneratedKeys="true" keyProperty="id">
+        insert into mes_defect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="defectCode != null and defectCode != ''">defect_code,</if>
+            <if test="defectName != null and defectName != ''">defect_name,</if>
+            <if test="defectCategory != null">defect_category,</if>
+            <if test="severity != null">severity,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="defectCode != null and defectCode != ''">#{defectCode},</if>
+            <if test="defectName != null and defectName != ''">#{defectName},</if>
+            <if test="defectCategory != null">#{defectCategory},</if>
+            <if test="severity != null">#{severity},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDefect" parameterType="Defect">
+        update mes_defect
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="defectCode != null and defectCode != ''">defect_code = #{defectCode},</if>
+            <if test="defectName != null and defectName != ''">defect_name = #{defectName},</if>
+            <if test="defectCategory != null">defect_category = #{defectCategory},</if>
+            <if test="severity != null">severity = #{severity},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDefectById" parameterType="Long">
+        delete from mes_defect where id = #{id}
+    </delete>
+
+    <delete id="deleteDefectByIds" parameterType="String">
+        delete from mes_defect where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
