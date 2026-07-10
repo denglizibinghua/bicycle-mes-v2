@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bicyclemes.mes.mapper.ProductionReportMapper">
+
+    <resultMap type="ProductionReport" id="ProductionReportResult">
+        <result property="id"    column="id"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="qualifiedQuantity"    column="qualified_quantity"    />
+        <result property="defectiveQuantity"    column="defective_quantity"    />
+        <result property="reporter"    column="reporter"    />
+        <result property="reportTime"    column="report_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <!-- 联表查询扩展 resultMap（继承原 resultMap + 工单号关联字段） -->
+    <resultMap type="ProductionReport" id="ProductionReportJoinResult" extends="ProductionReportResult">
+        <result property="orderNo" column="order_no"/>
+    </resultMap>
+
+    <sql id="selectProductionReportVo">
+        select id, order_id, qualified_quantity, defective_quantity, reporter, report_time, create_by, create_time, update_by, update_time, remark from mes_production_report
+    </sql>
+
+    <!-- 联表查询 SQL 片段（含工单 join 拿工单号） -->
+    <sql id="selectProductionReportVoWithJoin">
+        select r.id, r.order_id, r.qualified_quantity, r.defective_quantity, r.reporter, r.report_time,
+               r.create_by, r.create_time, r.update_by, r.update_time, r.remark,
+               wo.order_no as order_no
+        from mes_production_report r
+        left join mes_work_order wo on r.order_id = wo.id
+    </sql>
+
+    <select id="selectProductionReportList" parameterType="ProductionReport" resultMap="ProductionReportJoinResult">
+        <include refid="selectProductionReportVoWithJoin"/>
+        <where>
+            <if test="orderId != null "> and r.order_id = #{orderId}</if>
+            <if test="qualifiedQuantity != null "> and r.qualified_quantity = #{qualifiedQuantity}</if>
+            <if test="defectiveQuantity != null "> and r.defective_quantity = #{defectiveQuantity}</if>
+            <if test="reporter != null  and reporter != ''"> and r.reporter like concat('%', #{reporter}, '%')</if>
+            <if test="reportTime != null "> and r.report_time = #{reportTime}</if>
+            <if test="orderNo != null  and orderNo != ''"> and wo.order_no like concat('%', #{orderNo}, '%')</if>
+        </where>
+        order by r.report_time desc
+    </select>
+
+    <select id="selectProductionReportById" parameterType="Long" resultMap="ProductionReportResult">
+        <include refid="selectProductionReportVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertProductionReport" parameterType="ProductionReport" useGeneratedKeys="true" keyProperty="id">
+        insert into mes_production_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">order_id,</if>
+            <if test="qualifiedQuantity != null">qualified_quantity,</if>
+            <if test="defectiveQuantity != null">defective_quantity,</if>
+            <if test="reporter != null">reporter,</if>
+            <if test="reportTime != null">report_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">#{orderId},</if>
+            <if test="qualifiedQuantity != null">#{qualifiedQuantity},</if>
+            <if test="defectiveQuantity != null">#{defectiveQuantity},</if>
+            <if test="reporter != null">#{reporter},</if>
+            <if test="reportTime != null">#{reportTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateProductionReport" parameterType="ProductionReport">
+        update mes_production_report
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="qualifiedQuantity != null">qualified_quantity = #{qualifiedQuantity},</if>
+            <if test="defectiveQuantity != null">defective_quantity = #{defectiveQuantity},</if>
+            <if test="reporter != null">reporter = #{reporter},</if>
+            <if test="reportTime != null">report_time = #{reportTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteProductionReportById" parameterType="Long">
+        delete from mes_production_report where id = #{id}
+    </delete>
+
+    <delete id="deleteProductionReportByIds" parameterType="String">
+        delete from mes_production_report where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
