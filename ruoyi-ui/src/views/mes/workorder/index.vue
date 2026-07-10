@@ -120,12 +120,9 @@
 
     <el-table v-loading="loading" :data="workorderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="主键ID" align="center" prop="id" />
       <el-table-column label="工单号" align="center" prop="orderNo" />
-      <el-table-column label="产品物料ID" align="center" prop="materialId" />
       <el-table-column label="计划生产数量" align="center" prop="quantity" />
       <el-table-column label="已完成数量" align="center" prop="completedQuantity" />
-      <el-table-column label="产线ID" align="center" prop="lineId" />
       <el-table-column label="计划开始日期" align="center" prop="planStartDate" width="180">
         <template #default="scope">
           <span>{{ parseTime(scope.row.planStartDate, '{y}-{m}-{d}') }}</span>
