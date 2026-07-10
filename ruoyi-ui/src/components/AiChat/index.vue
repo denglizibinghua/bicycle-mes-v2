@@ -6,11 +6,23 @@
     </div>
 
     <!-- 对话面板 -->
-    <div v-if="visible" class="ai-panel">
-      <!-- 标题栏 -->
-      <div class="ai-header">
+    <div
+      v-if="visible"
+      class="ai-panel"
+      :class="{ 'ai-panel--dragging': dragging }"
+      :style="panelStyle"
+    >
+      <!-- 标题栏（按住可拖拽） -->
+      <div class="ai-header" @mousedown="startDrag">
         <span>🤖 MES 助手</span>
-        <el-icon @click="close"><Close /></el-icon>
+        <div class="ai-header-actions" @mousedown.stop>
+          <!-- 缩放切换 -->
+          <el-icon @click="toggleSize"><FullScreen /></el-icon>
+          <!-- 最小化 -->
+          <el-icon @click="minimize"><Minus /></el-icon>
+          <!-- 关闭 -->
+          <el-icon @click="close"><Close /></el-icon>
+        </div>
       </div>
 
       <!-- 消息列表 -->
@@ -63,14 +75,16 @@
 <script>
 import { aiChat } from '@/api/mes/ai'
 import { useRouter } from 'vue-router'
-import { ChatDotRound, Close, Promotion } from '@element-plus/icons-vue'
+import { ChatDotRound, Close, Promotion, Minus, FullScreen } from '@element-plus/icons-vue'
 
 export default {
   name: 'AiChat',
   components: {
     ChatDotRound,
     Close,
-    Promotion
+    Promotion,
+    Minus,
+    FullScreen
   },
   setup() {
     const router = useRouter()
@@ -81,7 +95,33 @@ export default {
       visible: false,
       loading: false,
       inputText: '',
-      messages: []
+      messages: [],
+      // 拖拽与缩放相关状态
+      dragging: false,        // 是否正在拖拽
+      enlarged: false,         // 是否大尺寸（true=560×680，false=380×520）
+      panelLeft: null,         // 拖拽后的 left，null 表示用默认右下定位
+      panelTop: null
+    }
+  },
+  computed: {
+    // 面板样式：尺寸 + 定位
+    panelStyle() {
+      const style = {
+        width: this.enlarged ? '560px' : '380px',
+        height: this.enlarged ? '680px' : '520px'
+      }
+      if (this.panelLeft !== null && this.panelTop !== null) {
+        // 已拖拽：用 left/top 定位
+        style.left = this.panelLeft + 'px'
+        style.top = this.panelTop + 'px'
+        style.right = 'auto'
+        style.bottom = 'auto'
+      } else {
+        // 默认：右下角定位
+        style.right = '24px'
+        style.bottom = '24px'
+      }
+      return style
     }
   },
   methods: {
@@ -100,6 +140,65 @@ export default {
 
     close() {
       this.visible = false
+    },
+
+    // 最小化：收起面板回到浮动按钮（保留消息状态）
+    minimize() {
+      this.visible = false
+    },
+
+    // 切换面板大小（默认 ↔ 大尺寸）
+    toggleSize() {
+      this.enlarged = !this.enlarged
+      // 尺寸变化后重新校正位置，避免越界
+      this.clampPosition()
+    },
+
+    // 开始拖拽：记录起点并绑定全局 mousemove/mouseup
+    startDrag(e) {
+      const rect = this.$el.querySelector('.ai-panel').getBoundingClientRect()
+      const startX = e.clientX
+      const startY = e.clientY
+      const startLeft = rect.left
+      const startTop = rect.top
+
+      // 首次拖拽：从默认右下定位切到 left/top 定位
+      this.panelLeft = rect.left
+      this.panelTop = rect.top
+      this.dragging = true
+
+      // 拖拽中：根据鼠标偏移更新位置并限制边界
+      const onMove = (ev) => {
+        const dx = ev.clientX - startX
+        const dy = ev.clientY - startY
+        this.panelLeft = startLeft + dx
+        this.panelTop = startTop + dy
+        this.clampPosition()
+      }
+      // 结束拖拽：解绑事件
+      const onUp = () => {
+        this.dragging = false
+        document.removeEventListener('mousemove', onMove)
+        document.removeEventListener('mouseup', onUp)
+      }
+      document.addEventListener('mousemove', onMove)
+      document.addEventListener('mouseup', onUp)
+    },
+
+    // 边界限制：保证面板至少有 50px 可见在视口内
+    clampPosition() {
+      if (this.panelLeft === null) return
+      const w = this.enlarged ? 560 : 380
+      const h = this.enlarged ? 680 : 520
+      const margin = 50
+      // left 范围：[margin - w, innerWidth - margin]（右侧或左侧至少留 50px）
+      const minLeft = margin - w
+      const maxLeft = window.innerWidth - margin
+      // top 范围：[margin - h, innerHeight - margin]
+      const minTop = margin - h
+      const maxTop = window.innerHeight - margin
+      this.panelLeft = Math.max(minLeft, Math.min(maxLeft, this.panelLeft))
+      this.panelTop = Math.max(minTop, Math.min(maxTop, this.panelTop))
     },
 
     async send() {
@@ -175,14 +274,21 @@ export default {
 }
 
 .ai-panel {
-  width: 380px;
-  height: 520px;
+  position: fixed;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  // 缩放切换时尺寸有过渡动画
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+// 拖拽过程中禁用过渡，保证跟手
+.ai-panel--dragging {
+  transition: none !important;
+  user-select: none;
 }
 
 .ai-header {
@@ -194,11 +300,22 @@ export default {
   align-items: center;
   font-size: 15px;
   font-weight: 500;
-  cursor: default; // 防止拖拽
+  cursor: move; // 提示可拖拽
 
-  .el-icon {
-    cursor: pointer;
-    font-size: 18px;
+  .ai-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .el-icon {
+      cursor: pointer;
+      font-size: 18px;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
   }
 }
 
