@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bicyclemes.mes.mapper.QualityInspectionMapper">
+    
+    <resultMap type="QualityInspection" id="QualityInspectionResult">
+        <result property="id"    column="id"    />
+        <result property="detailId"    column="detail_id"    />
+        <result property="inspectionType"    column="inspection_type"    />
+        <result property="defectId"    column="defect_id"    />
+        <result property="inspectionResult"    column="inspection_result"    />
+        <result property="defectiveQuantity"    column="defective_quantity"    />
+        <result property="inspector"    column="inspector"    />
+        <result property="inspectionTime"    column="inspection_time"    />
+        <result property="description"    column="description"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <!-- 联表查询扩展 resultMap（继承原 resultMap + 3 个关联字段） -->
+    <resultMap type="QualityInspection" id="QualityInspectionJoinResult" extends="QualityInspectionResult">
+        <result property="orderNo"     column="order_no"/>
+        <result property="processName" column="process_name"/>
+        <result property="defectName"  column="defect_name"/>
+    </resultMap>
+
+    <sql id="selectQualityInspectionVo">
+        select id, detail_id, inspection_type, defect_id, inspection_result, defective_quantity, inspector, inspection_time, description, create_by, create_time, update_by, update_time, remark from mes_quality_inspection
+    </sql>
+
+    <!-- 联表查询 SQL 片段（含工单明细→工单→工序 / 缺陷 join） -->
+    <sql id="selectQualityInspectionVoWithJoin">
+        select q.id, q.detail_id, q.inspection_type, q.defect_id, q.inspection_result, 
+               q.defective_quantity, q.inspector, q.inspection_time, q.description, 
+               q.create_by, q.create_time, q.update_by, q.update_time, q.remark,
+               wo.order_no as order_no,
+               p.process_name as process_name,
+               d.defect_name as defect_name
+        from mes_quality_inspection q
+        left join mes_work_order_detail wd on q.detail_id = wd.id
+        left join mes_work_order wo on wd.order_id = wo.id
+        left join mes_process p on wd.process_id = p.id
+        left join mes_defect d on q.defect_id = d.id
+    </sql>
+
+    <select id="selectQualityInspectionList" parameterType="QualityInspection" resultMap="QualityInspectionJoinResult">
+        <include refid="selectQualityInspectionVoWithJoin"/>
+        <where>
+            <if test="detailId != null "> and q.detail_id = #{detailId}</if>
+            <if test="inspectionType != null  and inspectionType != ''"> and q.inspection_type = #{inspectionType}</if>
+            <if test="defectId != null "> and q.defect_id = #{defectId}</if>
+            <if test="inspectionResult != null  and inspectionResult != ''"> and q.inspection_result = #{inspectionResult}</if>
+            <if test="defectiveQuantity != null "> and q.defective_quantity = #{defectiveQuantity}</if>
+            <if test="inspector != null  and inspector != ''"> and q.inspector = #{inspector}</if>
+            <if test="inspectionTime != null "> and q.inspection_time = #{inspectionTime}</if>
+            <if test="description != null  and description != ''"> and q.description = #{description}</if>
+            <!-- 关联字段模糊查询（仅 list 接口可用，selectById 不需要） -->
+            <if test="orderNo != null  and orderNo != ''"> and wo.order_no like concat('%', #{orderNo}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectQualityInspectionById" parameterType="Long" resultMap="QualityInspectionResult">
+        <include refid="selectQualityInspectionVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertQualityInspection" parameterType="QualityInspection" useGeneratedKeys="true" keyProperty="id">
+        insert into mes_quality_inspection
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="detailId != null">detail_id,</if>
+            <if test="inspectionType != null and inspectionType != ''">inspection_type,</if>
+            <if test="defectId != null">defect_id,</if>
+            <if test="inspectionResult != null and inspectionResult != ''">inspection_result,</if>
+            <if test="defectiveQuantity != null">defective_quantity,</if>
+            <if test="inspector != null">inspector,</if>
+            <if test="inspectionTime != null">inspection_time,</if>
+            <if test="description != null">description,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="detailId != null">#{detailId},</if>
+            <if test="inspectionType != null and inspectionType != ''">#{inspectionType},</if>
+            <if test="defectId != null">#{defectId},</if>
+            <if test="inspectionResult != null and inspectionResult != ''">#{inspectionResult},</if>
+            <if test="defectiveQuantity != null">#{defectiveQuantity},</if>
+            <if test="inspector != null">#{inspector},</if>
+            <if test="inspectionTime != null">#{inspectionTime},</if>
+            <if test="description != null">#{description},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateQualityInspection" parameterType="QualityInspection">
+        update mes_quality_inspection
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="detailId != null">detail_id = #{detailId},</if>
+            <if test="inspectionType != null and inspectionType != ''">inspection_type = #{inspectionType},</if>
+            <if test="defectId != null">defect_id = #{defectId},</if>
+            <if test="inspectionResult != null and inspectionResult != ''">inspection_result = #{inspectionResult},</if>
+            <if test="defectiveQuantity != null">defective_quantity = #{defectiveQuantity},</if>
+            <if test="inspector != null">inspector = #{inspector},</if>
+            <if test="inspectionTime != null">inspection_time = #{inspectionTime},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteQualityInspectionById" parameterType="Long">
+        delete from mes_quality_inspection where id = #{id}
+    </delete>
+
+    <delete id="deleteQualityInspectionByIds" parameterType="String">
+        delete from mes_quality_inspection where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
