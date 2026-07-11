@@ -98,7 +98,7 @@ spring:
       base-url: https://api.deepseek.com/v1
       chat:
         options:
-          model: deepseek-chat
+          model: deepseek-v4-flash
           temperature: 0.7
 
 # token配置
