@@ -3,6 +3,24 @@ import { getToken, removeToken, clearAll } from './storage'
 // 后端地址：开发环境用局域网 IP
 const BASE_URL = 'http://localhost:8080'
 
+// loading 计数器：多个并发请求共用一个 loading，第一个 show、最后一个 hide
+let loadingCount = 0
+
+function showLoading(): void {
+  if (loadingCount === 0) {
+    uni.showLoading({ title: '加载中...', mask: true })
+  }
+  loadingCount++
+}
+
+function hideLoading(): void {
+  loadingCount--
+  if (loadingCount <= 0) {
+    loadingCount = 0
+    uni.hideLoading()
+  }
+}
+
 interface RequestOptions {
   url: string
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -29,7 +47,7 @@ function request<T = any>(options: RequestOptions): Promise<T> {
   const { url, method = 'GET', data, header = {}, showLoading = true } = options
 
   if (showLoading) {
-    uni.showLoading({ title: '加载中...', mask: true })
+    showLoading()
   }
 
   const token = getToken()
@@ -82,7 +100,7 @@ function request<T = any>(options: RequestOptions): Promise<T> {
       },
       complete: () => {
         if (showLoading) {
-          uni.hideLoading()
+          hideLoading()
         }
       },
     })
