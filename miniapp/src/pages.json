@@ -1,0 +1,92 @@
+{
+	"pages": [
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/dashboard/dashboard",
+			"style": {
+				"navigationBarTitleText": "工作台"
+			}
+		},
+		{
+			"path": "pages/work-order/list",
+			"style": {
+				"navigationBarTitleText": "工单列表"
+			}
+		},
+		{
+			"path": "pages/work-order/detail",
+			"style": {
+				"navigationBarTitleText": "工单详情"
+			}
+		},
+		{
+			"path": "pages/report/report",
+			"style": {
+				"navigationBarTitleText": "报工"
+			}
+		},
+		{
+			"path": "pages/report/history",
+			"style": {
+				"navigationBarTitleText": "报工历史"
+			}
+		},
+		{
+			"path": "pages/quality/quality",
+			"style": {
+				"navigationBarTitleText": "质检"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"tabBar": {
+		"custom": true,
+		"color": "#999999",
+		"selectedColor": "#2c5364",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/dashboard/dashboard",
+				"text": "工作台",
+				"iconPath": "static/tab/workorder.png",
+				"selectedIconPath": "static/tab/workorder-active.png"
+			},
+			{
+				"pagePath": "pages/report/report",
+				"text": "报工",
+				"iconPath": "static/tab/report.png",
+				"selectedIconPath": "static/tab/report-active.png"
+			},
+			{
+				"pagePath": "pages/quality/quality",
+				"text": "质检",
+				"iconPath": "static/tab/quality.png",
+				"selectedIconPath": "static/tab/quality-active.png"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"text": "我的",
+				"iconPath": "static/tab/mine.png",
+				"selectedIconPath": "static/tab/mine-active.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "飞驰 MES",
+		"navigationBarBackgroundColor": "#2c5364",
+		"backgroundColor": "#f5f6fa"
+	}
+}
