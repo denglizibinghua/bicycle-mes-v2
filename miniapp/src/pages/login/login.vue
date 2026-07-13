@@ -72,16 +72,18 @@ const captchaImg = ref('')
 async function refreshCaptcha() {
   try {
     const res = await getCaptcha()
+    console.log('captcha res:', JSON.stringify({ enabled: res.captchaEnabled, uuid: res.uuid, imgLen: res.img?.length }))
     captchaEnabled.value = res.captchaEnabled
     if (res.captchaEnabled) {
       form.uuid = res.uuid
       // 若依后端返回裸 base64，需要拼 data:image 前缀才能被 <image> 渲染
       captchaImg.value = res.img?.startsWith('data:')
         ? res.img
-        : 'data:image/gif;base64,' + res.img
+        : 'data:image/jpeg;base64,' + res.img
     }
-  } catch {
-    // captcha 获取失败，按无验证码模式继续
+  } catch (e) {
+    console.error('captcha fetch failed:', e)
+    captchaEnabled.value = false
   }
 }
 

@@ -26,7 +26,7 @@ interface RequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   data?: any
   header?: Record<string, string>
-  showLoading?: boolean
+  withLoading?: boolean
 }
 
 interface AjaxResult<T = any> {
@@ -44,9 +44,9 @@ interface TableDataInfo<T = any> {
 }
 
 function request<T = any>(options: RequestOptions): Promise<T> {
-  const { url, method = 'GET', data, header = {}, showLoading = true } = options
+  const { url, method = 'GET', data, header = {}, withLoading = true } = options
 
-  if (showLoading) {
+  if (withLoading) {
     showLoading()
   }
 
@@ -99,7 +99,7 @@ function request<T = any>(options: RequestOptions): Promise<T> {
         reject(err)
       },
       complete: () => {
-        if (showLoading) {
+        if (withLoading) {
           hideLoading()
         }
       },
