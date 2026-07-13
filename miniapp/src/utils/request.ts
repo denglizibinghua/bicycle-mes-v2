@@ -3,20 +3,19 @@ import { getToken, removeToken, clearAll } from './storage'
 // 后端地址：开发环境用局域网 IP
 const BASE_URL = 'http://localhost:8080'
 
-// loading 计数器：多个并发请求共用一个 loading，第一个 show、最后一个 hide
-let loadingCount = 0
+// loading 状态：避免多个请求重复 show/hide
+let isLoading = false
 
 function showLoading(): void {
-  if (loadingCount === 0) {
+  if (!isLoading) {
+    isLoading = true
     uni.showLoading({ title: '加载中...', mask: true })
   }
-  loadingCount++
 }
 
 function hideLoading(): void {
-  loadingCount--
-  if (loadingCount <= 0) {
-    loadingCount = 0
+  if (isLoading) {
+    isLoading = false
     uni.hideLoading()
   }
 }
