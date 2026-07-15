@@ -1,6 +1,14 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
+      <el-form-item label="工单号" prop="orderNo">
+        <el-input
+          v-model="queryParams.orderNo"
+          placeholder="请输入工单号"
+          clearable
+          @keyup.enter="handleQuery"
+        />
+      </el-form-item>
       <el-form-item label="工单明细ID" prop="detailId">
         <el-input
           v-model="queryParams.detailId"
@@ -165,8 +173,15 @@
       <el-form ref="qualityRef" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label="工单明细ID" prop="detailId">
-              <el-input v-model="form.detailId" placeholder="请输入工单明细ID" />
+            <el-form-item label="选择工单明细" prop="detailId">
+              <el-select v-model="form.detailId" placeholder="请选择工单明细" filterable style="width:100%">
+                <el-option
+                  v-for="d in detailOptions"
+                  :key="d.id"
+                  :label="d.orderNo + ' → 工序#' + d.processId + ' (明细ID:' + d.id + ')'"
+                  :value="d.id"
+                />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -250,11 +265,13 @@
 
 <script setup name="Quality">
 import { listQuality, getQuality, delQuality, addQuality, updateQuality } from "@/api/mes/quality"
+import { listWorkorderdetail } from "@/api/mes/workorderdetail"
 
 const { proxy } = getCurrentInstance()
 const { mes_inspection_type, mes_inspection_result } = proxy.useDict('mes_inspection_type', 'mes_inspection_result')
 
 const qualityList = ref([])
+const detailOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -269,6 +286,7 @@ const data = reactive({
   queryParams: {
     pageNum: 1,
     pageSize: 10,
+    orderNo: undefined,
     detailId: undefined,
     inspectionType: undefined,
     defectId: undefined,
@@ -349,9 +367,17 @@ function handleSelectionChange(selection) {
   multiple.value = !selection.length
 }
 
+/** 加载工单明细列表 */
+function loadDetails() {
+  listWorkorderdetail({ pageNum: 1, pageSize: 999 }).then(res => {
+    detailOptions.value = res.rows || []
+  })
+}
+
 /** 新增按钮操作 */
 function handleAdd() {
   reset()
+  loadDetails()
   form.value.inspectionResult = "PASS"
   form.value.inspectionType = "过程检验"
   open.value = true

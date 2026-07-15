@@ -96,8 +96,15 @@
     <!-- 添加或修改报工记录对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="productionreportRef" :model="form" :rules="rules" label-width="100px">
-        <el-form-item label="工单ID" prop="orderId">
-          <el-input v-model="form.orderId" placeholder="请输入工单ID（必须为生产中状态）" />
+        <el-form-item label="选择工单" prop="orderId">
+          <el-select v-model="form.orderId" placeholder="请选择生产中状态的工单" filterable style="width:100%">
+            <el-option
+              v-for="wo in workorderOptions"
+              :key="wo.id"
+              :label="wo.orderNo + ' (ID:' + wo.id + ', ' + wo.quantity + '件)'"
+              :value="wo.id"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="合格数量" prop="qualifiedQuantity">
           <el-input-number v-model="form.qualifiedQuantity" :min="0" controls-position="right" />
@@ -124,10 +131,12 @@
 
 <script setup name="Productionreport">
 import { listProductionreport, getProductionreport, delProductionreport, addProductionreport, updateProductionreport } from "@/api/mes/productionreport"
+import { listWorkorder } from "@/api/mes/workorder"
 
 const { proxy } = getCurrentInstance()
 
 const productionreportList = ref([])
+const workorderOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -210,9 +219,17 @@ function handleSelectionChange(selection) {
   multiple.value = !selection.length
 }
 
+/** 加载生产中状态的工单列表 */
+function loadWorkOrders() {
+  listWorkorder({ status: 'PRODUCING', pageNum: 1, pageSize: 999 }).then(res => {
+    workorderOptions.value = res.rows || []
+  })
+}
+
 /** 新增按钮操作 */
 function handleAdd() {
   reset()
+  loadWorkOrders()
   open.value = true
   title.value = "添加报工记录"
 }

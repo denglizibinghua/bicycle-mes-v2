@@ -129,13 +129,17 @@
       <el-form ref="workorderdetailRef" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label="工单ID" prop="orderId">
-              <el-input v-model="form.orderId" placeholder="请输入工单ID" />
+            <el-form-item label="选择工单" prop="orderId">
+              <el-select v-model="form.orderId" placeholder="请选择工单" filterable style="width:100%">
+                <el-option v-for="w in workorderOptions" :key="w.id" :label="w.orderNo + ' (ID:' + w.id + ', ' + w.status + ')'" :value="w.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="工序ID" prop="processId">
-              <el-input v-model="form.processId" placeholder="请输入工序ID" />
+            <el-form-item label="选择工序" prop="processId">
+              <el-select v-model="form.processId" placeholder="请选择工序" filterable style="width:100%">
+                <el-option v-for="p in processOptions" :key="p.id" :label="p.processName + ' (' + p.processCode + ')'" :value="p.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -177,11 +181,15 @@
 
 <script setup name="Workorderdetail">
 import { listWorkorderdetail, getWorkorderdetail, delWorkorderdetail, addWorkorderdetail, updateWorkorderdetail } from "@/api/mes/workorderdetail"
+import { listWorkorder } from "@/api/mes/workorder"
+import { listProcess } from "@/api/mes/process"
 
 const { proxy } = getCurrentInstance()
 const route = useRoute()
 
 const workorderdetailList = ref([])
+const workorderOptions = ref([])
+const processOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -271,9 +279,16 @@ function handleSelectionChange(selection) {
   multiple.value = !selection.length
 }
 
+/** 加载工单和工序选项 */
+function loadOptions() {
+  listWorkorder({ pageNum: 1, pageSize: 999 }).then(res => { workorderOptions.value = res.rows || [] })
+  listProcess({ pageNum: 1, pageSize: 999 }).then(res => { processOptions.value = res.rows || [] })
+}
+
 /** 新增按钮操作 */
 function handleAdd() {
   reset()
+  loadOptions()
   open.value = true
   title.value = "添加工单明细"
 }

@@ -46,6 +46,9 @@ public class WorkOrderDetail extends BaseEntity
     @Excel(name = "状态", readConverterExp = "P=ENDING/PROCESSING/COMPLETED")
     private String status;
 
+    /** 工单号（联表查询字段，非数据库字段） */
+    private String orderNo;
+
     public void setId(Long id) 
     {
         this.id = id;
@@ -124,6 +127,16 @@ public class WorkOrderDetail extends BaseEntity
     public String getStatus() 
     {
         return status;
+    }
+
+    public void setOrderNo(String orderNo) 
+    {
+        this.orderNo = orderNo;
+    }
+
+    public String getOrderNo() 
+    {
+        return orderNo;
     }
 
     @Override

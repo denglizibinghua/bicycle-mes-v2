@@ -120,6 +120,7 @@
 
     <el-table v-loading="loading" :data="workorderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
+      <el-table-column label="ID" align="center" prop="id" width="60" />
       <el-table-column label="工单号" align="center" prop="orderNo" />
       <el-table-column label="计划生产数量" align="center" prop="quantity" />
       <el-table-column label="已完成数量" align="center" prop="completedQuantity" />
@@ -185,8 +186,10 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="产品物料ID" prop="materialId">
-              <el-input v-model="form.materialId" placeholder="请输入产品物料ID" />
+            <el-form-item label="选择物料" prop="materialId">
+              <el-select v-model="form.materialId" placeholder="请选择物料" filterable style="width:100%">
+                <el-option v-for="m in materialOptions" :key="m.id" :label="m.materialName + ' (' + m.materialCode + ')'" :value="m.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -195,8 +198,10 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="产线ID" prop="lineId">
-              <el-input v-model="form.lineId" placeholder="请输入产线ID" />
+            <el-form-item label="选择产线" prop="lineId">
+              <el-select v-model="form.lineId" placeholder="请选择产线" filterable style="width:100%">
+                <el-option v-for="l in lineOptions" :key="l.id" :label="l.lineName + ' (' + l.lineCode + ')'" :value="l.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -245,11 +250,15 @@
 
 <script setup name="Workorder">
 import { listWorkorder, getWorkorder, delWorkorder, addWorkorder, updateWorkorder, startWorkorder, finishWorkorder, completeWorkorder, cancelWorkorder } from "@/api/mes/workorder"
+import { listMaterial } from "@/api/mes/material"
+import { listProductionline } from "@/api/mes/productionline"
 
 const { proxy } = getCurrentInstance()
 const { mes_work_order_status, mes_work_order_priority } = proxy.useDict('mes_work_order_status', 'mes_work_order_priority')
 
 const workorderList = ref([])
+const materialOptions = ref([])
+const lineOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -354,9 +363,16 @@ function handleSelectionChange(selection) {
   multiple.value = !selection.length
 }
 
+/** 加载物料和产线选项 */
+function loadOptions() {
+  listMaterial({ pageNum: 1, pageSize: 999 }).then(res => { materialOptions.value = res.rows || [] })
+  listProductionline({ pageNum: 1, pageSize: 999 }).then(res => { lineOptions.value = res.rows || [] })
+}
+
 /** 新增按钮操作 */
 function handleAdd() {
   reset()
+  loadOptions()
   form.value.status = "NEW"
   form.value.completedQuantity = 0
   form.value.priority = "MEDIUM"
