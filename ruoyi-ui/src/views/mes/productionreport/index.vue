@@ -132,8 +132,10 @@
 <script setup name="Productionreport">
 import { listProductionreport, getProductionreport, delProductionreport, addProductionreport, updateProductionreport } from "@/api/mes/productionreport"
 import { listWorkorder } from "@/api/mes/workorder"
+import useUserStore from '@/store/modules/user'
 
 const { proxy } = getCurrentInstance()
+const userStore = useUserStore()
 
 const productionreportList = ref([])
 const workorderOptions = ref([])
@@ -229,6 +231,7 @@ function loadWorkOrders() {
 /** 新增按钮操作 */
 function handleAdd() {
   reset()
+  form.value.reporter = userStore.nickName
   loadWorkOrders()
   open.value = true
   title.value = "添加报工记录"

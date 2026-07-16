@@ -110,7 +110,10 @@ import type { WorkOrderDetail, InspectionResult } from '@/api/types'
 const details = ref<WorkOrderDetail[]>([])
 const selectedDetail = ref<WorkOrderDetail | null>(null)
 const detailOptions = computed(() =>
-  details.value.map((d) => ({ ...d, label: `工序${d.sortOrder} - ${d.processName || '未知'}` }))
+  details.value.map((d: any) => ({
+    ...d,
+    label: (d.orderNo ? d.orderNo + ' → ' : '') + '工序' + d.sortOrder + ' - ' + (d.processName || '未知')
+  }))
 )
 
 const form = reactive({
@@ -132,7 +135,7 @@ const canSubmit = computed(() => {
 
 async function fetchDetails() {
   try {
-    const res = await getWorkOrderDetailList({ pageSize: 100, status: 'PROCESSING' })
+    const res = await getWorkOrderDetailList({ pageSize: 100 })
     details.value = res.rows
   } catch {}
 }

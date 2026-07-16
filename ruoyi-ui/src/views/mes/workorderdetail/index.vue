@@ -143,8 +143,10 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="所需物料ID" prop="materialId">
-              <el-input v-model="form.materialId" placeholder="请输入所需物料ID" />
+            <el-form-item label="所需物料" prop="materialId">
+              <el-select v-model="form.materialId" placeholder="请选择物料" filterable style="width:100%">
+                <el-option v-for="m in materialOptions" :key="m.id" :label="m.materialName + ' (ID:' + m.id + ')'" :value="m.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -159,7 +161,9 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="工序顺序" prop="sortOrder">
-              <el-input v-model="form.sortOrder" placeholder="请输入工序顺序" />
+              <el-select v-model="form.sortOrder" placeholder="请选择工序顺序" style="width:100%">
+                <el-option v-for="n in 20" :key="n" :label="'第 ' + n + ' 步'" :value="n" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -183,6 +187,7 @@
 import { listWorkorderdetail, getWorkorderdetail, delWorkorderdetail, addWorkorderdetail, updateWorkorderdetail } from "@/api/mes/workorderdetail"
 import { listWorkorder } from "@/api/mes/workorder"
 import { listProcess } from "@/api/mes/process"
+import { listMaterial } from "@/api/mes/material"
 
 const { proxy } = getCurrentInstance()
 const route = useRoute()
@@ -190,6 +195,7 @@ const route = useRoute()
 const workorderdetailList = ref([])
 const workorderOptions = ref([])
 const processOptions = ref([])
+const materialOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -283,6 +289,7 @@ function handleSelectionChange(selection) {
 function loadOptions() {
   listWorkorder({ pageNum: 1, pageSize: 999 }).then(res => { workorderOptions.value = res.rows || [] })
   listProcess({ pageNum: 1, pageSize: 999 }).then(res => { processOptions.value = res.rows || [] })
+  listMaterial({ pageNum: 1, pageSize: 999 }).then(res => { materialOptions.value = res.rows || [] })
 }
 
 /** 新增按钮操作 */

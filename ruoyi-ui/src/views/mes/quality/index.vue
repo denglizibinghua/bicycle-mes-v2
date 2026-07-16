@@ -201,8 +201,10 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="缺陷类型ID" prop="defectId">
-              <el-input v-model="form.defectId" placeholder="请输入缺陷类型ID" />
+            <el-form-item label="缺陷类型" prop="defectId">
+              <el-select v-model="form.defectId" placeholder="请选择缺陷类型" filterable style="width:100%">
+                <el-option v-for="d in defectOptions" :key="d.id" :label="d.defectName + ' (ID:' + d.id + ')'" :value="d.id" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -266,12 +268,16 @@
 <script setup name="Quality">
 import { listQuality, getQuality, delQuality, addQuality, updateQuality } from "@/api/mes/quality"
 import { listWorkorderdetail } from "@/api/mes/workorderdetail"
+import { listDefect } from "@/api/mes/defect"
+import useUserStore from '@/store/modules/user'
 
 const { proxy } = getCurrentInstance()
+const userStore = useUserStore()
 const { mes_inspection_type, mes_inspection_result } = proxy.useDict('mes_inspection_type', 'mes_inspection_result')
 
 const qualityList = ref([])
 const detailOptions = ref([])
+const defectOptions = ref([])
 const open = ref(false)
 const loading = ref(true)
 const showSearch = ref(true)
@@ -367,10 +373,13 @@ function handleSelectionChange(selection) {
   multiple.value = !selection.length
 }
 
-/** 加载工单明细列表 */
+/** 加载工单明细和缺陷类型列表 */
 function loadDetails() {
   listWorkorderdetail({ pageNum: 1, pageSize: 999 }).then(res => {
     detailOptions.value = res.rows || []
+  })
+  listDefect({ pageNum: 1, pageSize: 999 }).then(res => {
+    defectOptions.value = res.rows || []
   })
 }
 
@@ -378,6 +387,7 @@ function loadDetails() {
 function handleAdd() {
   reset()
   loadDetails()
+  form.value.inspector = userStore.nickName
   form.value.inspectionResult = "PASS"
   form.value.inspectionType = "过程检验"
   open.value = true
