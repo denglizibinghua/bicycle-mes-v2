@@ -49,6 +49,9 @@ public class WorkOrderDetail extends BaseEntity
     /** 工单号（联表查询字段，非数据库字段） */
     private String orderNo;
 
+    /** 工序名称（联表查询字段，非数据库字段） */
+    private String processName;
+
     public void setId(Long id) 
     {
         this.id = id;
@@ -137,6 +140,16 @@ public class WorkOrderDetail extends BaseEntity
     public String getOrderNo() 
     {
         return orderNo;
+    }
+
+    public void setProcessName(String processName) 
+    {
+        this.processName = processName;
+    }
+
+    public String getProcessName() 
+    {
+        return processName;
     }
 
     @Override

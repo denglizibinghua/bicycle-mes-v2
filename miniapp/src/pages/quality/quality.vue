@@ -137,7 +137,11 @@ async function fetchDetails() {
   try {
     const res = await getWorkOrderDetailList({ pageSize: 100 })
     details.value = res.rows
-  } catch {}
+    console.log('加载工序明细成功，共', res.rows.length, '条')
+  } catch (e) {
+    console.error('加载工序明细失败', e)
+    uni.showToast({ title: '加载工序明细失败', icon: 'none' })
+  }
 }
 
 function onPickDetail(e: any) {
@@ -168,7 +172,9 @@ async function handleSubmit() {
     form.description = ''
     selectedDetail.value = null
     fetchDetails()
-  } catch {}
+  } catch (e) {
+    console.error('提交检验失败', e)
+  }
 }
 
 onMounted(() => {

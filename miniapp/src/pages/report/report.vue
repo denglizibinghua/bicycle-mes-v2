@@ -128,7 +128,11 @@ async function fetchWorkOrders() {
   try {
     const res = await getWorkOrderList({ status: 'PRODUCING', pageSize: 100 })
     workOrders.value = res.rows
-  } catch {}
+    console.log('加载生产中工单成功，共', res.rows.length, '条')
+  } catch (e) {
+    console.error('加载工单失败', e)
+    uni.showToast({ title: '加载工单失败', icon: 'none' })
+  }
 }
 
 function onPickOrder(e: any) {
@@ -158,7 +162,9 @@ async function handleSubmit() {
     form.defectiveQuantity = 0
     selectedOrder.value = null
     fetchWorkOrders()
-  } catch {}
+  } catch (e) {
+    console.error('报工提交失败', e)
+  }
 }
 
 onMounted(() => {

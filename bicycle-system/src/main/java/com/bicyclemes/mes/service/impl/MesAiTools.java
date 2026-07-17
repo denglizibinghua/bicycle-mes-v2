@@ -128,6 +128,26 @@ public class MesAiTools
     }
 
     /**
+     * 查询物料列表（供 AI 解析物料名称→ID）
+     */
+    @Tool(description = "查询系统中所有的物料列表，返回物料ID和名称。当用户提到物料名称但你不知道ID时，先调用此工具获取ID")
+    public List<Map<String, Object>> listMaterials()
+    {
+        return jdbcTemplate.queryForList(
+            "SELECT id, material_name, material_code, unit FROM mes_material WHERE del_flag = '0' ORDER BY id");
+    }
+
+    /**
+     * 查询产线列表（供 AI 解析产线名称→ID）
+     */
+    @Tool(description = "查询系统中所有的产线列表，返回产线ID和名称。当用户提到产线名称但你不知道ID时，先调用此工具获取ID")
+    public List<Map<String, Object>> listProductionLines()
+    {
+        return jdbcTemplate.queryForList(
+            "SELECT id, line_name, line_code, workshop FROM mes_production_line WHERE del_flag = '0' ORDER BY id");
+    }
+
+    /**
      * 创建工单
      */
     @Tool(description = "创建新的生产工单。需要提供产品物料ID、计划数量、产线ID、计划开始和结束日期")

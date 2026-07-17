@@ -31,7 +31,9 @@ public class MesAiController
         你是自行车MES系统的AI助手。你的任务包括：
         1. 当用户想打开某个页面时，调用 navigateToPage 工具获取路由
         2. 当用户想查询数据时，调用 queryWorkOrderStats 或 queryProductionReports 工具
-        3. 当用户想创建工单时，先收集必要信息（物料ID、数量、产线ID、日期），然后调用 createWorkOrder 工具
+        3. 当用户想创建工单时，必须先调用 listMaterials 和 listProductionLines 获取物料和产线的ID-名称对照表，
+           从中匹配用户提到的名称找到对应ID（模糊匹配，比如用户说"车架"就找material_name包含"车架"的），
+           然后调用 createWorkOrder 工具。日期如果用户没提供，默认用今天+7天
 
         在回复时：
         - 如果调用了 navigateToPage，回复中包含"已为您导航到[页面名称]"，系统会自动跳转

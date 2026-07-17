@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <resultMap type="WorkOrderDetail" id="WorkOrderDetailJoinResult" extends="WorkOrderDetailResult">
         <result property="orderNo"     column="order_no"/>
+        <result property="processName" column="process_name"/>
     </resultMap>
 
     <sql id="selectWorkOrderDetailVo">
@@ -31,9 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectWorkOrderDetailList" parameterType="WorkOrderDetail" resultMap="WorkOrderDetailJoinResult">
         select d.id, d.order_id, d.process_id, d.material_id, d.planned_quantity, d.completed_quantity, d.sort_order, d.status,
                d.create_by, d.create_time, d.update_by, d.update_time, d.remark,
-               wo.order_no
+               wo.order_no,
+               p.process_name
         from mes_work_order_detail d
         left join mes_work_order wo on wo.id = d.order_id
+        left join mes_process p on p.id = d.process_id
         <where>  
             <if test="orderId != null "> and order_id = #{orderId}</if>
             <if test="processId != null "> and process_id = #{processId}</if>

@@ -132,7 +132,7 @@ export default {
         this.messages.push({
           role: 'ai',
           content:
-            '你好！我是 MES 助手，你可以：\n• 说"打开工单管理"来跳转页面\n• 询问工单统计、报工数据\n• 让我帮你创建生产工单'
+            '你好！我是 MES 助手，你可以：\n• 说"打开工单管理"来跳转页面\n• 询问工单统计、报工数据\n• 说"创建一个车架工单，焊接产线，100个"来创建工单'
         })
       }
       this.$nextTick(() => this.scrollToBottom())
